@@ -1,0 +1,18 @@
+{
+"name": "হিসাবখাতা — HisabKhata",
+"short_name": "HisabKhata",
+"description": "অফলাইন-ফার্স্ট ব্যবসার হিসাব",
+"lang": "bn",
+"start_url": "/",
+"scope": "/",
+"display": "standalone",
+"orientation": "portrait",
+"background_color": "#0f766e",
+"theme_color": "#0f766e",
+"icons": [
+{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+{ "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+{ "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+{ "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+]
+}

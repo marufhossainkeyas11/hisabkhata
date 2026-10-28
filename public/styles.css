@@ -1,0 +1,46 @@
+/* System Bengali fonts only: works offline, no external font requests (CSP-safe) */
+:root{--bg:#f4f6f5;--card:#fff;--text:#16211f;--muted:#5f6f6b;--brand:#0f766e;--brand-fg:#fff;--line:#dfe6e4;--err:#b91c1c;--r:14px;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1514;--card:#16211f;--text:#e6efed;--muted:#93a5a1;--brand:#2dd4bf;--brand-fg:#06201c;--line:#26352f;--err:#f87171}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Noto Sans Bengali","Hind Siliguri","Kalpurush",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+#splash{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:#0f766e}
+#splash img{width:96px;height:96px;border-radius:22px}
+#app{min-height:100dvh;display:flex;flex-direction:column}
+.top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top));background:var(--brand);color:var(--brand-fg)}
+.top img{border-radius:7px}
+.top b{flex:1;font-size:18px}
+main{flex:1;padding:12px 12px calc(84px + env(safe-area-inset-bottom))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px}
+h2,h3,h4{margin:0 0 8px}
+.muted{color:var(--muted);font-size:14px}
+.err{color:var(--err);font-size:14px;margin:6px 0;min-height:1em}
+label{display:block;font-size:14px;color:var(--muted);margin-bottom:10px}
+input,select{width:100%;padding:12px;margin-top:4px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font:inherit}
+.row{display:flex;gap:8px;align-items:center}
+.row input{margin-top:0}
+.row-between{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.btn{background:var(--brand);color:var(--brand-fg);border:0;border-radius:10px;padding:12px 16px;font:inherit;font-weight:600;cursor:pointer}
+.btn:disabled{opacity:.6}
+.btn.full{width:100%}
+.btn.small{padding:6px 12px;font-size:14px}
+.btn.danger{background:var(--err);color:#fff}
+.link{background:none;border:0;color:var(--brand);font:inherit;padding:4px 6px;cursor:pointer}
+.item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.item>span:first-child{flex:1}
+.item.col{flex-direction:column;align-items:stretch;gap:4px}
+.chip{border:0;border-radius:99px;padding:4px 12px;font:inherit;font-size:13px;font-weight:600;color:#fff;cursor:pointer}
+.chip.ok{background:#15803d}.chip.pending{background:#b45309}.chip.error{background:#b91c1c}.chip.offline{background:#475569}.chip.busy{background:#0369a1}
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:5;display:grid;grid-template-columns:repeat(5,1fr);background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.nav button{background:none;border:0;padding:8px 0 6px;font:inherit;font-size:12px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.nav button.on{color:var(--brand);font-weight:700}
+.ico{font-size:20px;line-height:1}
+#auth{position:fixed;inset:0;z-index:20;background:var(--bg);overflow:auto;display:grid;place-items:center;padding:16px}
+.auth-card{width:100%;max-width:380px}
+.auth-card .logo{display:block;width:72px;height:72px;border-radius:18px;margin:0 auto 12px}
+.auth-card h1{text-align:center;font-size:22px;margin:0 0 16px}
+.sheet-bg{position:fixed;inset:0;z-index:30;background:#0008;display:flex;align-items:flex-end}
+.sheet{width:100%;max-height:85dvh;overflow:auto;background:var(--card);border-radius:18px 18px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+#toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:99px;z-index:40;max-width:90%;text-align:center}
+.update{background:#b45309;color:#fff;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
