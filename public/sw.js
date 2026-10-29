@@ -1,9 +1,9 @@
 import { runSync } from './sync.js';
 
 // Bump VERSION on every deploy: it triggers the in-app "update" prompt.
-const VERSION = 'hk-v1';
+const VERSION = 'hk-v2';
 const SHELL = [
-  '/', '/styles.css', '/app.js', '/db.js', '/sync.js',
+  '/', '/styles.css', '/app.js', '/db.js', '/sync.js', '/ledger.js',
   '/manifest.webmanifest', '/icons/icon.svg', '/icons/icon-192.png', '/icons/icon-512.png'
 ];
 
