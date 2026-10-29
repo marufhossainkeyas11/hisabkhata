@@ -1,5 +1,6 @@
 import { save, remove, getAll, metaGet, metaSet, outboxAll, outboxRemove, outboxPut, onEvent } from './db.js';
 import { api, runSync, AuthError } from './sync.js';
+import { loadAndCompute } from './ledger.js';
 
 const $ = (s) => document.querySelector(s);
 // Safe DOM builder: never uses innerHTML, so data can't inject markup
@@ -159,10 +160,21 @@ async function homeView() {
     nameIn.value = ''; balIn.value = '';
   } }, nameIn, balIn, h('button', { class: 'btn', type: 'submit' }, 'যোগ'));
 
+  const L = await loadAndCompute();
+  const tk = (v) => `৳ ${Number(v).toLocaleString('bn-BD')}`;
+  const line = (label, v, cls) => h('div', { class: 'item' }, h('span', {}, label), h('b', { class: cls }, tk(v)));
+  const accName = (id) => (accounts.find((a) => a.id === id) || {}).name || '—';
   return h('section', {},
     h('div', { class: 'card' },
       h('h2', {}, `স্বাগতম, ${state.user ? state.user.username : ''}`),
-      h('p', { class: 'muted' }, 'ড্যাশবোর্ড ফেজ ৬-এ আসবে। এখন নিচে অ্যাকাউন্ট যোগ করে অফলাইন → সিঙ্ক পরীক্ষা করো।')),
+      line('মোট ক্যাশ (সব অ্যাকাউন্ট)', L.cash),
+      ...accounts.map((a) => h('div', { class: 'item' }, h('span', { class: 'muted' }, `└ ${accName(a.id)}`), h('span', { class: 'muted' }, tk(L.balances[a.id] || 0)))),
+      line('স্টকের দাম (গড় খরচে)', L.stockValue),
+      line('কাস্টমারের কাছে পাওনা', L.receivable),
+      line('সাপ্লায়ারকে দেনা', L.payable),
+      line('মোট খরচ (ভাড়া, খাবার ইত্যাদি)', L.opex),
+      line('নিট লাভ', L.netProfit),
+      h('p', { class: 'muted' }, L.balanced ? '✅ হিসাব মিলেছে' : `⚠️ গরমিল ${tk(L.reconcileDiff)} — কোনো এন্ট্রি অসম্পূর্ণ`)),
     h('div', { class: 'card' },
       h('h3', {}, 'অ্যাকাউন্ট'),
       ...accounts.map((a) => h('div', { class: 'item' },
