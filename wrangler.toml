@@ -1,0 +1,12 @@
+name = "hisabkhata"
+main = "worker.js"
+compatibility_date = "2024-10-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hisabkhata-db"
+database_id = "1bcbdadf-e503-4ab4-a417-9c4a4d4ab14b"
